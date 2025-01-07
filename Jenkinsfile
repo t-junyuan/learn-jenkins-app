@@ -19,7 +19,7 @@ pipeline {
                 '''
             }
         }
-        
+        */
 
         stage('Test Stage') {
             agent {
@@ -37,7 +37,7 @@ pipeline {
                 '''
             }
         }
-        */
+        
 
         stage('E2E') {
             agent {
