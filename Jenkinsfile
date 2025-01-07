@@ -36,4 +36,10 @@ pipeline {
             }
         }
     }
+    
+    post {
+        success {
+            archiveArtifacts artifacts: 'test-results/**'
+        }
+    }
 }
