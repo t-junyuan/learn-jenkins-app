@@ -8,7 +8,7 @@ pipeline {
 
     stages {
         
-        stage('Build Stage') {
+        stage ('Build Stage') {
             agent {
                 docker {
                     image 'node:18-alpine'
@@ -77,7 +77,7 @@ pipeline {
             }
         }
 
-        stage('Deploy Staging') {
+        stage ('Deploy Staging') {
             agent {
                 docker {
                     image 'node:18-alpine'
@@ -97,7 +97,15 @@ pipeline {
             }
         }
 
-        stage('Deploy Production') {
+        stage ('Approval') {
+            steps {
+                timeout(time: 60, unit: 'SECONDS') {
+                    input message: 'Ready to deploy?', ok: 'Yes, I am sure I want to deploy'
+                }
+            }
+        }
+
+        stage ('Deploy Production') {
             agent {
                 docker {
                     image 'node:18-alpine'
@@ -117,7 +125,7 @@ pipeline {
             }
         }
 
-        stage('Prod E2E') {
+        stage ('Prod E2E') {
             agent {
                 docker {
                     image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
