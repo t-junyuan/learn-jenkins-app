@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        /*
+        
         stage('Build Stage') {
             agent {
                 docker {
@@ -76,7 +76,7 @@ pipeline {
                 }
             }
         }
-        */
+        
 
         stage('Deploy Stage') {
             agent {
@@ -92,8 +92,8 @@ pipeline {
                     npm install netlify-cli
                     node_modules/.bin/netlify --version
                     echo "Deploying to production. Site ID: $29e641d4-41e0-45f5-b3cb-be96d1c662cc"
-                    
                     node_modules/.bin/netlify status
+                    node_modules/.bin/netlify deploy --dir=build --prod
                 '''
             }
         }
