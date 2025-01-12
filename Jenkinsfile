@@ -8,13 +8,13 @@ pipeline {
     }
 
     stages {
-
+/*
         stage ('Docker') {
             steps {
                 sh 'docker build -t myplaywrite .'
             }
         }
-        
+*/        
         stage ('Build Stage') {
             agent {
                 docker {
